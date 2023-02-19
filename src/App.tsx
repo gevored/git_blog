@@ -4,6 +4,8 @@ import { GlobalStyle } from "./styles/global";
 import { Header } from "./components/Header";
 import { Container } from "./AppStyled";
 import { PresentationCard } from "./components/PresentationCard";
+import { SearchField } from "./components/SearchField";
+
 function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -11,6 +13,7 @@ function App() {
       <Container>
         <Header />
         <PresentationCard />
+        <SearchField />
       </Container>
     </ThemeProvider>
   );
