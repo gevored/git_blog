@@ -19,5 +19,6 @@ export const Container = styled.div`
     height: 50px;
     width: 100%;
     background-color: ${(props) => props.theme.baseInput};
+    color: ${(props) => props.theme.baseText};
   }
 `;
