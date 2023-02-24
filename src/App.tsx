@@ -5,16 +5,23 @@ import { Header } from "./components/Header";
 import { Container } from "./AppStyled";
 import { PresentationCard } from "./components/PresentationCard";
 import { SearchField } from "./components/SearchField";
-
+import { BoardIssues } from "./components/BoardIssues";
+import { UserProvider } from "./context/userContext";
+import { IssueProvider } from "./context/IssuesContext";
 function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
       <GlobalStyle />
-      <Container>
-        <Header />
-        <PresentationCard />
-        <SearchField />
-      </Container>
+      <UserProvider>
+        <IssueProvider>
+          <Container>
+            <Header />
+            <PresentationCard />
+            <SearchField />
+            <BoardIssues />
+          </Container>
+        </IssueProvider>
+      </UserProvider>
     </ThemeProvider>
   );
 }
