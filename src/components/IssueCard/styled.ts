@@ -6,7 +6,7 @@ export const Container = styled.div`
   background-color: ${(props) => props.theme.baseSpot};
   border-radius: 10px;
   padding: 15px;
-
+  cursor: pointer;
   div {
     display: flex;
     justify-content: space-between;

@@ -5,11 +5,13 @@ import {
   differenceInDays,
 } from "date-fns";
 import { ptBR } from "date-fns/locale";
+import { api } from "../../api/axios";
 
 interface IssueCardProps {
   body: string;
   title: string;
   created_at: string;
+  number: number;
 }
 function formatarData(data: string): string {
   const dataParsed = parseISO(data);
@@ -21,7 +23,7 @@ function formatarData(data: string): string {
   });
 }
 
-export function IssueCard({ body, title, created_at }: IssueCardProps) {
+export function IssueCard({ body, title, created_at, number }: IssueCardProps) {
   function castString(p: string) {
     if (p.length > 200) {
       const stringCated = p.substring(0, 250) + " ...";
@@ -30,8 +32,17 @@ export function IssueCard({ body, title, created_at }: IssueCardProps) {
 
     return p;
   }
+
+  async function handleClickIssue() {
+    const response = await api.get(
+      `repos/rocketseat-education/bootcamp-gostack-desafios/issues/${number}`
+    );
+
+    const { data } = response;
+    console.log(response);
+  }
   return (
-    <Container>
+    <Container onClick={handleClickIssue}>
       <div>
         <h1>{title}</h1>
         <span>{formatarData(created_at)}</span>
