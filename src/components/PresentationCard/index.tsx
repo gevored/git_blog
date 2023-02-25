@@ -8,19 +8,35 @@ import {
 import { FaGithub } from "react-icons/fa";
 import { HiOfficeBuilding, HiUsers } from "react-icons/hi";
 import { useUser } from "../../hooks/userHooks";
-
-export function PresentationCard() {
+interface PresentationCardProps {
+  isMainPage?: boolean;
+  titleIssue?: string;
+}
+export function PresentationCard({
+  isMainPage = true,
+  titleIssue,
+}: PresentationCardProps) {
   const { avatar_url, bio, company, following, login, name } = useUser();
 
+  console.log;
   return (
-    <Container>
-      <PhotoSpan>
-        {/* <img src="https://avatars.githubusercontent.com/u/14332784?s=400&u=a6c39afaf7d036126f0213491d3b4e344d8344cc&v=4" /> */}
-        <img src={avatar_url} alt="" />
-      </PhotoSpan>
+    <Container isMainPage={isMainPage}>
+      {isMainPage === true ? (
+        <PhotoSpan>
+          <img src={avatar_url} alt="" />
+        </PhotoSpan>
+      ) : null}
+
       <ContentContainer>
-        <h1>Diego Fernandes</h1>
-        <section>{bio}</section>
+        {isMainPage === true ? (
+          <>
+            <h1>{name}</h1>
+            <section>{bio}</section>
+          </>
+        ) : (
+          <h1>{titleIssue}</h1>
+        )}
+
         <ContainerInfo>
           <Info>
             <FaGithub />

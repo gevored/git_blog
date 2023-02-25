@@ -6,6 +6,8 @@ import {
 } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { api } from "../../api/axios";
+import { Outlet, Link } from "react-router-dom";
+import { ViewIssue } from "../../pages/ViewIssue";
 
 interface IssueCardProps {
   body: string;
@@ -33,21 +35,15 @@ export function IssueCard({ body, title, created_at, number }: IssueCardProps) {
     return p;
   }
 
-  async function handleClickIssue() {
-    const response = await api.get(
-      `repos/rocketseat-education/bootcamp-gostack-desafios/issues/${number}`
-    );
-
-    const { data } = response;
-    console.log(response);
-  }
   return (
-    <Container onClick={handleClickIssue}>
-      <div>
-        <h1>{title}</h1>
-        <span>{formatarData(created_at)}</span>
-      </div>
-      <p>{castString(body)}</p>
-    </Container>
+    <Link to={`/issue/${number}`}>
+      <Container>
+        <div>
+          <h1>{title}</h1>
+          <span>{formatarData(created_at)}</span>
+        </div>
+        <p>{castString(body)}</p>
+      </Container>
+    </Link>
   );
 }

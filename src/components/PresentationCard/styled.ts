@@ -1,9 +1,13 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+interface ContainerProps {
+  isMainPage?: boolean;
+}
+export const Container = styled.div<ContainerProps>`
   background-color: ${(props) => props.theme.baseProfile};
   display: flex;
-  justify-content: center;
+  justify-content: ${(props) =>
+    props.isMainPage === true ? "center" : "flex-start"};
   align-items: center;
   width: 864px;
   height: 212px;
